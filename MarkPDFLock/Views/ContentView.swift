@@ -13,7 +13,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
 
             ScrollView {
-                VStack(spacing: 9) {
+                VStack(spacing: 8) {
                     header
 
                     card {
@@ -26,7 +26,39 @@ struct ContentView: View {
                             onAddFolder: viewModel.choosePDFFolder
                         )
                     }
-                    .frame(minHeight: 170)
+
+                    HStack(alignment: .top, spacing: 8) {
+                        card {
+                            PasswordSectionView(
+                                settings: settings,
+                                userPassword: $viewModel.options.userPassword,
+                                ownerPassword: $viewModel.options.ownerPassword,
+                                showPassword: $viewModel.showPassword
+                            )
+                        }
+                        .frame(maxWidth: .infinity, alignment: .top)
+
+                        card {
+                            PermissionSectionView(
+                                settings: settings,
+                                printPermission: $viewModel.options.printPermission,
+                                copyAllowed: $viewModel.options.copyAllowed,
+                                modifyPermission: $viewModel.options.modifyPermission
+                            )
+                        }
+                        .frame(maxWidth: .infinity, alignment: .top)
+                    }
+
+                    card {
+                        ExportControlsView(
+                            settings: settings,
+                            exportFolderURL: viewModel.exportFolderURL,
+                            overwriteExisting: $viewModel.options.overwriteExisting,
+                            openFolderWhenFinished: $viewModel.options.openFolderWhenFinished,
+                            onChooseFolder: viewModel.chooseExportFolder,
+                            onClearList: viewModel.clearList
+                        )
+                    }
 
                     card {
                         FileListView(
@@ -49,44 +81,9 @@ struct ContentView: View {
                             summaryText: viewModel.summaryText
                         )
                     }
-                    .frame(minHeight: 150)
-
-                    HStack(alignment: .top, spacing: 8) {
-                        card {
-                            PasswordSectionView(
-                                settings: settings,
-                                userPassword: $viewModel.options.userPassword,
-                                ownerPassword: $viewModel.options.ownerPassword,
-                                showPassword: $viewModel.showPassword
-                            )
-                        }
-                        .frame(maxWidth: .infinity, minHeight: 260, alignment: .top)
-
-                        card {
-                            PermissionSectionView(
-                                settings: settings,
-                                printPermission: $viewModel.options.printPermission,
-                                copyAllowed: $viewModel.options.copyAllowed,
-                                modifyPermission: $viewModel.options.modifyPermission
-                            )
-                        }
-                        .frame(maxWidth: .infinity, minHeight: 260, alignment: .top)
-                    }
-
-                    card {
-                        ExportControlsView(
-                            settings: settings,
-                            exportFolderURL: viewModel.exportFolderURL,
-                            overwriteExisting: $viewModel.options.overwriteExisting,
-                            openFolderWhenFinished: $viewModel.options.openFolderWhenFinished,
-                            onChooseFolder: viewModel.chooseExportFolder,
-                            onClearList: viewModel.clearList
-                        )
-                    }
-                    .frame(minHeight: 170)
                 }
                 .frame(maxWidth: pageMaxWidth)
-                .padding(14)
+                .padding(12)
             }
         }
         .textSelection(.enabled)
@@ -120,10 +117,18 @@ struct ContentView: View {
                 } label: {
                     Label(viewModel.isProcessing ? settings.text(.encrypting) : settings.text(.startEncryption), systemImage: "bolt.fill")
                         .font(.headline)
-                        .padding(.horizontal, 8)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .foregroundStyle(.white)
+                        .frame(minWidth: 170)
                 }
                 .disabled(!viewModel.canStartEncryption)
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(.plain)
+                .background(
+                    RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        .fill(viewModel.canStartEncryption ? Color.green : Color.gray)
+                )
+                .opacity(viewModel.isProcessing ? 0.9 : 1)
                 .keyboardShortcut(.defaultAction)
 
                 Button {
@@ -144,7 +149,7 @@ struct ContentView: View {
                     .fill(settings.theme.cardBackground)
             )
             .overlay(
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
                     .stroke(settings.theme.border, lineWidth: 1)
             )
     }
