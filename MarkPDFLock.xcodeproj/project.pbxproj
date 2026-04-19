@@ -1,0 +1,324 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A001 /* MarkPDFLockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001 /* MarkPDFLockApp.swift */; };
+		A002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B002 /* ContentView.swift */; };
+		A003 /* FileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003 /* FileItem.swift */; };
+		A004 /* EncryptionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B004 /* EncryptionOptions.swift */; };
+		A005 /* QPDFRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B005 /* QPDFRunner.swift */; };
+		A006 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006 /* MainViewModel.swift */; };
+		A007 /* DropZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007 /* DropZoneView.swift */; };
+		A008 /* FileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B008 /* FileListView.swift */; };
+		A009 /* PasswordSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B009 /* PasswordSectionView.swift */; };
+		A010 /* PermissionSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010 /* PermissionSectionView.swift */; };
+		A011 /* ExportControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011 /* ExportControlsView.swift */; };
+		A012 /* ProgressSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012 /* ProgressSectionView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B001 /* MarkPDFLockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkPDFLockApp.swift; sourceTree = "<group>"; };
+		B002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B003 /* FileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItem.swift; sourceTree = "<group>"; };
+		B004 /* EncryptionOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptionOptions.swift; sourceTree = "<group>"; };
+		B005 /* QPDFRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QPDFRunner.swift; sourceTree = "<group>"; };
+		B006 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		B007 /* DropZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropZoneView.swift; sourceTree = "<group>"; };
+		B008 /* FileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListView.swift; sourceTree = "<group>"; };
+		B009 /* PasswordSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSectionView.swift; sourceTree = "<group>"; };
+		B010 /* PermissionSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionSectionView.swift; sourceTree = "<group>"; };
+		B011 /* ExportControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportControlsView.swift; sourceTree = "<group>"; };
+		B012 /* ProgressSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSectionView.swift; sourceTree = "<group>"; };
+		B099 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		P001 /* MarkPDFLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkPDFLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		G001 = {
+			isa = PBXGroup;
+			children = (
+				G002,
+				G100,
+				B099,
+			);
+			sourceTree = "<group>";
+		};
+		G002 /* MarkPDFLock */ = {
+			isa = PBXGroup;
+			children = (
+				B001,
+				G003,
+				G004,
+				G005,
+				G006,
+				G007,
+			);
+			path = MarkPDFLock;
+			sourceTree = "<group>";
+		};
+		G003 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B003,
+				B004,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		G004 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B005,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		G005 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B006,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		G006 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B002,
+				B007,
+				B008,
+				B009,
+				B010,
+				B011,
+				B012,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		G007 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		G100 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				P001,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		T001 /* MarkPDFLock */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C001 /* Build configuration list for PBXNativeTarget "MarkPDFLock" */;
+			buildPhases = (
+				S001 /* Sources */,
+				F001 /* Frameworks */,
+				R001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarkPDFLock;
+			productName = MarkPDFLock;
+			productReference = P001 /* MarkPDFLock.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PRJ1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					T001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = C000 /* Build configuration list for PBXProject "MarkPDFLock" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = G001;
+			productRefGroup = G100 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				T001,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		R001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		S001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A001,
+				A002,
+				A003,
+				A004,
+				A005,
+				A006,
+				A007,
+				A008,
+				A009,
+				A010,
+				A011,
+				A012,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BC00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BC01 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		BC10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MarkPDFLock;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MarkPDFLock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BC11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MarkPDFLock;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.MarkPDFLock;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C000 /* Build configuration list for PBXProject "MarkPDFLock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC00,
+				BC01,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C001 /* Build configuration list for PBXNativeTarget "MarkPDFLock" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC10,
+				BC11,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = PRJ1 /* Project object */;
+}
