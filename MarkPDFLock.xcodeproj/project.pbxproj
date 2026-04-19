@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D5D2FBE2F94AFFA00950EB4 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D2FBD2F94AFFA00950EB4 /* AppSettings.swift */; };
+		4D5D2FC02F94B00700950EB4 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D2FBF2F94B00700950EB4 /* SettingsView.swift */; };
+		4D5D2FC22F94B18800950EB4 /* HelpHintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D2FC12F94B18800950EB4 /* HelpHintView.swift */; };
 		A001 /* MarkPDFLockApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001 /* MarkPDFLockApp.swift */; };
 		A002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B002 /* ContentView.swift */; };
 		A003 /* FileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003 /* FileItem.swift */; };
@@ -22,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D5D2FBD2F94AFFA00950EB4 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		4D5D2FBF2F94B00700950EB4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		4D5D2FC12F94B18800950EB4 /* HelpHintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpHintView.swift; sourceTree = "<group>"; };
 		B001 /* MarkPDFLockApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkPDFLockApp.swift; sourceTree = "<group>"; };
 		B002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B003 /* FileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileItem.swift; sourceTree = "<group>"; };
@@ -52,21 +58,21 @@
 		G001 = {
 			isa = PBXGroup;
 			children = (
-				G002,
-				G100,
-				B099,
+				G002 /* MarkPDFLock */,
+				G100 /* Products */,
+				B099 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
 		G002 /* MarkPDFLock */ = {
 			isa = PBXGroup;
 			children = (
-				B001,
-				G003,
-				G004,
-				G005,
-				G006,
-				G007,
+				B001 /* MarkPDFLockApp.swift */,
+				G003 /* Models */,
+				G004 /* Services */,
+				G005 /* ViewModels */,
+				G006 /* Views */,
+				G007 /* Utilities */,
 			);
 			path = MarkPDFLock;
 			sourceTree = "<group>";
@@ -74,8 +80,9 @@
 		G003 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B003,
-				B004,
+				B003 /* FileItem.swift */,
+				B004 /* EncryptionOptions.swift */,
+				4D5D2FBD2F94AFFA00950EB4 /* AppSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -83,7 +90,7 @@
 		G004 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B005,
+				B005 /* QPDFRunner.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -91,7 +98,7 @@
 		G005 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				B006,
+				B006 /* MainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -99,13 +106,15 @@
 		G006 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B002,
-				B007,
-				B008,
-				B009,
-				B010,
-				B011,
-				B012,
+				B002 /* ContentView.swift */,
+				B007 /* DropZoneView.swift */,
+				B008 /* FileListView.swift */,
+				B009 /* PasswordSectionView.swift */,
+				B010 /* PermissionSectionView.swift */,
+				B011 /* ExportControlsView.swift */,
+				B012 /* ProgressSectionView.swift */,
+				4D5D2FBF2F94B00700950EB4 /* SettingsView.swift */,
+				4D5D2FC12F94B18800950EB4 /* HelpHintView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -120,7 +129,7 @@
 		G100 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				P001,
+				P001 /* MarkPDFLock.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,7 +182,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				T001,
+				T001 /* MarkPDFLock */,
 			);
 		};
 /* End PBXProject section */
@@ -193,18 +202,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A001,
-				A002,
-				A003,
-				A004,
-				A005,
-				A006,
-				A007,
-				A008,
-				A009,
-				A010,
-				A011,
-				A012,
+				4D5D2FBE2F94AFFA00950EB4 /* AppSettings.swift in Sources */,
+				A001 /* MarkPDFLockApp.swift in Sources */,
+				A002 /* ContentView.swift in Sources */,
+				A003 /* FileItem.swift in Sources */,
+				A004 /* EncryptionOptions.swift in Sources */,
+				A005 /* QPDFRunner.swift in Sources */,
+				A006 /* MainViewModel.swift in Sources */,
+				4D5D2FC02F94B00700950EB4 /* SettingsView.swift in Sources */,
+				A007 /* DropZoneView.swift in Sources */,
+				A008 /* FileListView.swift in Sources */,
+				A009 /* PasswordSectionView.swift in Sources */,
+				4D5D2FC22F94B18800950EB4 /* HelpHintView.swift in Sources */,
+				A010 /* PermissionSectionView.swift in Sources */,
+				A011 /* ExportControlsView.swift in Sources */,
+				A012 /* ProgressSectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,8 +315,8 @@
 		C000 /* Build configuration list for PBXProject "MarkPDFLock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BC00,
-				BC01,
+				BC00 /* Debug */,
+				BC01 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -312,8 +324,8 @@
 		C001 /* Build configuration list for PBXNativeTarget "MarkPDFLock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BC10,
-				BC11,
+				BC10 /* Debug */,
+				BC11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

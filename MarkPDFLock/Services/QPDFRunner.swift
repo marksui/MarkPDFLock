@@ -37,7 +37,7 @@ final class QPDFRunner {
         let args = [
             "--encrypt", options.userPassword, ownerPassword, "256",
             "--use-aes=y",
-            "--print=") + [options.printPermission.qpdfValue] + [
+            "--print=", options.printPermission.qpdfValue,
             "--modify=", options.modifyPermission.qpdfValue,
             "--extract=", options.copyAllowed ? "y" : "n",
             "--", inputURL.path, outputURL.path

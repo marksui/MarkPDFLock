@@ -1,8 +1,11 @@
 import SwiftUI
 
 struct FileListView: View {
+    @ObservedObject var settings: AppSettings
     let files: [FileItem]
+    let isProcessing: Bool
     let onRemove: (UUID) -> Void
+    let onRemoveCompleted: () -> Void
     let onReveal: (FileItem) -> Void
 
     private let sizeFormatter: ByteCountFormatter = {
@@ -14,10 +17,15 @@ struct FileListView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("Files")
+                Text(settings.text(.files))
                     .font(.headline)
                 Spacer()
-                Text("\(files.count) item(s)")
+                if files.contains(where: { $0.status == .done }) {
+                    Button(settings.text(.removeCompleted), action: onRemoveCompleted)
+                        .buttonStyle(.bordered)
+                        .disabled(isProcessing)
+                }
+                Text("\(files.count) \(settings.text(.items))")
                     .foregroundStyle(.secondary)
                     .font(.subheadline)
             }
@@ -28,7 +36,7 @@ struct FileListView: View {
                         Text(file.fileName)
                             .font(.body.weight(.medium))
                         Spacer()
-                        Text(file.status.label)
+                        Text(statusLabel(file.status))
                             .font(.caption)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 2)
@@ -57,32 +65,43 @@ struct FileListView: View {
                         Spacer()
 
                         if file.status == .done {
-                            Button("Reveal in Finder") {
+                            Button(settings.text(.revealInFinder)) {
                                 onReveal(file)
                             }
                             .buttonStyle(.link)
                         }
 
-                        Button(role: .destructive) {
+                        Button {
                             onRemove(file.id)
                         } label: {
-                            Image(systemName: "trash")
+                            Label(settings.text(.cancel), systemImage: "xmark.circle")
                         }
                         .buttonStyle(.borderless)
+                        .disabled(isProcessing)
                     }
                 }
                 .padding(.vertical, 4)
             }
-            .frame(minHeight: 180)
+            .frame(minHeight: 220)
+            .scrollContentBackground(.hidden)
         }
     }
 
     private func statusColor(_ status: FileProcessingStatus) -> Color {
         switch status {
         case .pending: return .secondary
-        case .processing: return .blue
+        case .processing: return settings.theme.tint
         case .done: return .green
         case .failed: return .red
+        }
+    }
+
+    private func statusLabel(_ status: FileProcessingStatus) -> String {
+        switch status {
+        case .pending: return settings.text(.statusPending)
+        case .processing: return settings.text(.statusProcessing)
+        case .done: return settings.text(.statusDone)
+        case .failed: return settings.text(.statusFailed)
         }
     }
 }

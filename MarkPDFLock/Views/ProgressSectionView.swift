@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ProgressSectionView: View {
+    @ObservedObject var settings: AppSettings
     let progress: Double
     let completedCount: Int
     let totalCount: Int
@@ -8,12 +9,12 @@ struct ProgressSectionView: View {
     let summaryText: String
 
     var body: some View {
-        GroupBox("Progress") {
+        GroupBox(settings.text(.progress)) {
             VStack(alignment: .leading, spacing: 10) {
                 ProgressView(value: progress)
                     .progressViewStyle(.linear)
 
-                Text("Processed \(completedCount) of \(totalCount)")
+                Text(settings.text(.processedCount, completedCount, totalCount))
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
@@ -22,7 +23,7 @@ struct ProgressSectionView: View {
 
                 if let globalMessage {
                     Text(globalMessage)
-                        .foregroundStyle(globalMessage.contains("fail") ? .orange : .green)
+                        .foregroundStyle(globalMessage == settings.text(.encryptionCompletedWithFailures) ? .orange : .green)
                 }
             }
             .padding(.top, 4)

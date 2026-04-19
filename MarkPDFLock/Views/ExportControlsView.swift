@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ExportControlsView: View {
+    @ObservedObject var settings: AppSettings
     let exportFolderURL: URL?
     @Binding var overwriteExisting: Bool
     @Binding var openFolderWhenFinished: Bool
@@ -8,23 +9,31 @@ struct ExportControlsView: View {
     let onClearList: () -> Void
 
     var body: some View {
-        GroupBox("Export") {
+        GroupBox(settings.text(.export)) {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
-                    Text(exportFolderURL?.path ?? "No folder selected")
+                    Text(exportFolderURL?.path ?? settings.text(.noFolderSelected))
                         .lineLimit(1)
                         .truncationMode(.middle)
                         .foregroundStyle(exportFolderURL == nil ? .secondary : .primary)
                     Spacer()
-                    Button("Choose Folder", action: onChooseFolder)
+                    Button(settings.text(.chooseFolder), action: onChooseFolder)
+                    HelpHintView(message: settings.text(.helpChooseFolder))
                 }
 
-                Toggle("Overwrite existing encrypted files", isOn: $overwriteExisting)
-                Toggle("Open export folder when finished", isOn: $openFolderWhenFinished)
+                HStack(spacing: 6) {
+                    Toggle(settings.text(.overwriteExisting), isOn: $overwriteExisting)
+                    HelpHintView(message: settings.text(.helpOverwriteExisting))
+                }
+
+                HStack(spacing: 6) {
+                    Toggle(settings.text(.openFolderWhenFinished), isOn: $openFolderWhenFinished)
+                    HelpHintView(message: settings.text(.helpOpenFolderWhenFinished))
+                }
 
                 HStack {
                     Spacer()
-                    Button("Clear List", role: .destructive, action: onClearList)
+                    Button(settings.text(.clearList), role: .destructive, action: onClearList)
                 }
             }
             .padding(.top, 4)

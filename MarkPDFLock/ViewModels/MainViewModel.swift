@@ -1,5 +1,6 @@
 import AppKit
 import Foundation
+import UniformTypeIdentifiers
 
 @MainActor
 final class MainViewModel: ObservableObject {
@@ -25,13 +26,13 @@ final class MainViewModel: ObservableObject {
     var summaryText: String {
         let done = files.filter { $0.status == .done }.count
         let failed = files.filter { $0.status == .failed }.count
-        return "Total: \(files.count) • Succeeded: \(done) • Failed: \(failed)"
+        return String(format: AppText.localized(.summaryFormat), files.count, done, failed)
     }
 
     func addFiles(from urls: [URL]) {
         let pdfs = urls.filter { $0.pathExtension.lowercased() == "pdf" }
         guard !pdfs.isEmpty else {
-            globalMessage = "Only PDF files are supported."
+            globalMessage = AppText.localized(.onlyPDFSupported)
             return
         }
 
@@ -43,14 +44,49 @@ final class MainViewModel: ObservableObject {
     }
 
     func removeFile(id: UUID) {
+        guard !isProcessing else { return }
         files.removeAll { $0.id == id }
     }
 
     func clearList() {
+        guard !isProcessing else { return }
         files.removeAll()
         progress = 0
         completedCount = 0
         globalMessage = nil
+    }
+
+    func removeCompletedFiles() {
+        guard !isProcessing else { return }
+        files.removeAll { $0.status == .done }
+    }
+
+    func choosePDFFiles() {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = false
+        panel.allowsMultipleSelection = true
+        panel.allowedContentTypes = [.pdf]
+        panel.prompt = "Select"
+
+        if panel.runModal() == .OK {
+            addFiles(from: panel.urls)
+        }
+    }
+
+    func choosePDFFolder() {
+        let panel = NSOpenPanel()
+        panel.canChooseFiles = false
+        panel.canChooseDirectories = true
+        panel.allowsMultipleSelection = false
+        panel.prompt = "Select"
+
+        guard panel.runModal() == .OK, let folderURL = panel.url else {
+            return
+        }
+
+        let urls = (try? FileManager.default.contentsOfDirectory(at: folderURL, includingPropertiesForKeys: nil)) ?? []
+        addFiles(from: urls)
     }
 
     func chooseExportFolder() {
@@ -91,7 +127,7 @@ final class MainViewModel: ObservableObject {
                             try FileManager.default.removeItem(at: outputURL)
                         } else {
                             files[index].status = .failed
-                            files[index].errorMessage = "Output file already exists. Enable overwrite or rename the file."
+                            files[index].errorMessage = AppText.localized(.outputFileExists)
                             advanceProgress()
                             continue
                         }
@@ -115,10 +151,10 @@ final class MainViewModel: ObservableObject {
 
             isProcessing = false
             globalMessage = files.contains(where: { $0.status == .failed })
-                ? "Encryption completed with some failures."
-                : "Encryption completed successfully."
+                ? AppText.localized(.encryptionCompletedWithFailures)
+                : AppText.localized(.encryptionCompletedSuccessfully)
 
-            if options.openFolderWhenFinished, let exportFolderURL {
+            if options.openFolderWhenFinished {
                 NSWorkspace.shared.open(exportFolderURL)
             }
         }
@@ -153,14 +189,14 @@ final class MainViewModel: ObservableObject {
     private func prettify(errorText: String) -> String {
         let lowered = errorText.lowercased()
         if lowered.contains("password") && lowered.contains("empty") {
-            return "Password cannot be empty."
+            return AppText.localized(.passwordCannotBeEmpty)
         }
         if lowered.contains("permission denied") {
-            return "Permission denied while reading or writing files."
+            return AppText.localized(.permissionDenied)
         }
         if lowered.contains("no such file") {
-            return "Input or output path was not found."
+            return AppText.localized(.pathNotFound)
         }
-        return errorText.isEmpty ? "An unknown error occurred." : errorText
+        return errorText.isEmpty ? AppText.localized(.unknownError) : errorText
     }
 }

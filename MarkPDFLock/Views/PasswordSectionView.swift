@@ -1,37 +1,47 @@
 import SwiftUI
 
 struct PasswordSectionView: View {
+    @ObservedObject var settings: AppSettings
     @Binding var userPassword: String
     @Binding var ownerPassword: String
     @Binding var showPassword: Bool
 
     var body: some View {
-        GroupBox("Password Settings") {
+        GroupBox(settings.text(.passwordSettings)) {
             VStack(alignment: .leading, spacing: 10) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Open password (required)")
-                        .font(.subheadline)
+                    HStack(spacing: 6) {
+                        Text(settings.text(.openPasswordRequired))
+                            .font(.subheadline)
+                        HelpHintView(message: settings.text(.helpOpenPassword), scrollable: true)
+                    }
                     if showPassword {
-                        TextField("Enter open password", text: $userPassword)
+                        TextField(settings.text(.openPasswordPlaceholder), text: $userPassword)
                     } else {
-                        SecureField("Enter open password", text: $userPassword)
+                        SecureField(settings.text(.openPasswordPlaceholder), text: $userPassword)
                     }
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Owner password (optional)")
-                        .font(.subheadline)
-                    if showPassword {
-                        TextField("Optional owner password", text: $ownerPassword)
-                    } else {
-                        SecureField("Optional owner password", text: $ownerPassword)
+                    HStack(spacing: 6) {
+                        Text(settings.text(.ownerPasswordOptional))
+                            .font(.subheadline)
+                        HelpHintView(message: settings.text(.helpOwnerPassword), scrollable: true)
                     }
-                    Text("If empty, owner password will safely default to open password.")
+                    if showPassword {
+                        TextField(settings.text(.ownerPasswordPlaceholder), text: $ownerPassword)
+                    } else {
+                        SecureField(settings.text(.ownerPasswordPlaceholder), text: $ownerPassword)
+                    }
+                    Text(settings.text(.ownerPasswordHint))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
 
-                Toggle("Show password", isOn: $showPassword)
+                HStack(spacing: 6) {
+                    Toggle(settings.text(.showPassword), isOn: $showPassword)
+                    HelpHintView(message: settings.text(.helpShowPassword), scrollable: true)
+                }
             }
             .padding(.top, 4)
         }

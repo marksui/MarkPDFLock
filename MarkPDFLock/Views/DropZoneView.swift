@@ -2,23 +2,33 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct DropZoneView: View {
+    @ObservedObject var settings: AppSettings
     let onDropFiles: ([URL]) -> Void
+    let onAddFiles: () -> Void
+    let onAddFolder: () -> Void
     @State private var isTargeted = false
 
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 10) {
             Image(systemName: "doc.badge.plus")
                 .font(.system(size: 28, weight: .medium))
-            Text("Drag and drop PDF files here")
+            Text(settings.text(.dragDropTitle))
                 .font(.headline)
-            Text("Drop one or multiple PDFs")
+            Text(settings.text(.dragDropSubtitle))
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
+
+            HStack(spacing: 8) {
+                Button(settings.text(.addFiles), action: onAddFiles)
+                    .buttonStyle(.bordered)
+                Button(settings.text(.addFolder), action: onAddFolder)
+                    .buttonStyle(.bordered)
+            }
         }
-        .frame(maxWidth: .infinity, minHeight: 110)
+        .frame(maxWidth: .infinity, minHeight: 128)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .strokeBorder(isTargeted ? Color.accentColor : Color.secondary.opacity(0.35), style: StrokeStyle(lineWidth: 2, dash: [7]))
+                .strokeBorder(isTargeted ? settings.theme.tint : Color.secondary.opacity(0.35), style: StrokeStyle(lineWidth: 2, dash: [7]))
                 .background(RoundedRectangle(cornerRadius: 12).fill(Color.secondary.opacity(0.08)))
         )
         .onDrop(of: [UTType.fileURL.identifier], isTargeted: $isTargeted, perform: handleDrop(providers:))
