@@ -6,6 +6,5 @@ struct MarkPDFLockApp: App {
         WindowGroup {
             ContentView()
         }
-        .windowResizability(.contentSize)
     }
 }

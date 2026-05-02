@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject var settings: AppSettings
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) private var presentationMode
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -63,7 +63,7 @@ struct SettingsView: View {
             HStack {
                 Spacer()
                 Button(settings.text(.close)) {
-                    dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }
                 .keyboardShortcut(.defaultAction)
             }

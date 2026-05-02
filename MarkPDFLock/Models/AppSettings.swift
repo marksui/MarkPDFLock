@@ -14,14 +14,6 @@ enum AppFontSize: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
-    var dynamicTypeSize: DynamicTypeSize {
-        switch self {
-        case .small: return .xSmall
-        case .medium: return .medium
-        case .large: return .xxxLarge
-        }
-    }
-
     var controlSize: ControlSize {
         switch self {
         case .small: return .small

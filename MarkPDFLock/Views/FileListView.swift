@@ -26,7 +26,7 @@ struct FileListView: View {
                         .disabled(isProcessing)
                 }
                 Text("\(files.count) \(settings.text(.items))")
-                    .foregroundStyle(.secondary)
+                    .foregroundColor(.secondary)
                     .font(.subheadline)
             }
 
@@ -41,25 +41,25 @@ struct FileListView: View {
                             .padding(.horizontal, 8)
                             .padding(.vertical, 2)
                             .background(statusColor(file.status).opacity(0.15))
-                            .foregroundStyle(statusColor(file.status))
+                            .foregroundColor(statusColor(file.status))
                             .clipShape(Capsule())
                     }
 
                     Text(file.originalPath)
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundColor(.secondary)
                         .lineLimit(1)
                         .truncationMode(.middle)
 
                     HStack(spacing: 12) {
                         Text(sizeFormatter.string(fromByteCount: file.fileSize))
                             .font(.caption)
-                            .foregroundStyle(.secondary)
+                            .foregroundColor(.secondary)
 
                         if let errorMessage = file.errorMessage {
                             Text(errorMessage)
                                 .font(.caption)
-                                .foregroundStyle(.red)
+                                .foregroundColor(.red)
                         }
 
                         Spacer()
@@ -83,7 +83,6 @@ struct FileListView: View {
                 .padding(.vertical, 4)
             }
             .frame(minHeight: 220)
-            .scrollContentBackground(.hidden)
         }
     }
 

@@ -242,6 +242,7 @@ h1 {
 }
 
 .feature-grid,
+.screenshot-grid,
 .setup-grid,
 .privacy-grid {
   display: grid;
@@ -252,6 +253,46 @@ h1 {
 
 .feature-grid {
   grid-template-columns: repeat(4, 1fr);
+}
+
+.screenshots {
+  background: #111827;
+  color: #fff;
+}
+
+.screenshots .section-heading .eyebrow,
+.screenshots figcaption {
+  color: #93c5fd;
+}
+
+.screenshots .section-heading h2 {
+  color: #fff;
+}
+
+.screenshot-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.screenshot-grid figure {
+  margin: 0;
+}
+
+.screenshot-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.38);
+}
+
+figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+  text-align: center;
 }
 
 .feature-grid article,
@@ -477,7 +518,8 @@ h1 {
 }
 
 @media (max-width: 980px) {
-  .feature-grid {
+  .feature-grid,
+  .screenshot-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -515,6 +557,7 @@ h1 {
   }
 
   .feature-grid,
+  .screenshot-grid,
   .settings-preview,
   .setup-grid,
   .privacy-grid {

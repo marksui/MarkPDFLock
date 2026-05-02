@@ -15,7 +15,7 @@ struct HelpHintView: View {
         } label: {
             Image(systemName: "questionmark.circle")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundColor(.secondary)
         }
         .buttonStyle(.plain)
         .help(message)
@@ -25,7 +25,6 @@ struct HelpHintView: View {
                 ScrollView {
                     Text(message)
                         .font(.body)
-                        .textSelection(.enabled)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(14)
                 }
@@ -33,7 +32,6 @@ struct HelpHintView: View {
             } else {
                 Text(message)
                     .font(.body)
-                    .textSelection(.enabled)
                     .padding(12)
                     .frame(minWidth: 280, idealWidth: 320, maxWidth: 400, alignment: .leading)
             }
