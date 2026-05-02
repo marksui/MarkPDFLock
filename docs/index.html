@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MarkPDFLock is a local-first macOS app for encrypting PDF files with passwords and PDF permissions.">
+    <title>MarkPDFLock - Password protect PDFs on macOS</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="MarkPDFLock home">
+        <img class="brand-mark" src="assets/markpdflock-icon.png" width="512" height="512" alt="" aria-hidden="true">
+        <span>MarkPDFLock</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#privacy">Privacy</a>
+        <a href="https://github.com/marksui/MarkPDFLock">GitHub</a>
+        <a class="nav-download" href="https://github.com/marksui/MarkPDFLock/releases">Download</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <img class="hero-icon" src="assets/markpdflock-icon.png" width="512" height="512" alt="" aria-hidden="true">
+          <p class="eyebrow">Open source macOS app | v1.0.0</p>
+          <h1 id="hero-title">MarkPDFLock</h1>
+          <p class="hero-subtitle">
+            Password protect one PDF or a whole batch, set printing and copying permissions, and keep every document local on your Mac.
+          </p>
+          <div class="hero-actions" aria-label="MarkPDFLock actions">
+            <a class="button primary" href="https://github.com/marksui/MarkPDFLock/releases">Download for macOS</a>
+            <a class="button secondary" href="https://github.com/marksui/MarkPDFLock">View on GitHub</a>
+          </div>
+          <p class="release-meta">
+            <span>MarkPDFLock v1.0.0</span>
+            <span aria-hidden="true">|</span>
+            <span>Local PDF encryption tool</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="features" aria-labelledby="features-title">
+        <div class="section-heading">
+          <p class="eyebrow">Features</p>
+          <h2 id="features-title">Built for quick, private PDF protection.</h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <span class="feature-chip">Batch</span>
+            <h3>Encrypt multiple PDFs at once.</h3>
+            <p>Drag in one file or a folder of PDFs and process the queue with progress for each document.</p>
+          </article>
+          <article>
+            <span class="feature-chip">Passwords</span>
+            <h3>Set open and owner passwords.</h3>
+            <p>Use one password for simple sharing, or add a separate owner password for permission control.</p>
+          </article>
+          <article>
+            <span class="feature-chip">Permissions</span>
+            <h3>Choose what recipients can do.</h3>
+            <p>Control printing, copying, and modification rules before exporting the encrypted PDFs.</p>
+          </article>
+          <article>
+            <span class="feature-chip">Local</span>
+            <h3>Keep documents on your Mac.</h3>
+            <p>MarkPDFLock runs locally and saves new encrypted copies without editing the originals.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section app-preview-section" aria-labelledby="preview-title">
+        <div class="section-heading">
+          <p class="eyebrow">App Flow</p>
+          <h2 id="preview-title">A focused workflow from files to encrypted copies.</h2>
+        </div>
+        <div class="app-preview" aria-label="MarkPDFLock workflow preview">
+          <div class="preview-window">
+            <div class="window-bar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="drop-preview">
+              <strong>Drop PDF files here</strong>
+              <span>3 PDFs ready</span>
+            </div>
+            <div class="settings-preview">
+              <div>
+                <span>Open password</span>
+                <strong>Required</strong>
+              </div>
+              <div>
+                <span>Printing</span>
+                <strong>Allowed</strong>
+              </div>
+              <div>
+                <span>Copying</span>
+                <strong>Blocked</strong>
+              </div>
+            </div>
+          </div>
+          <div class="preview-side">
+            <span class="feature-chip">AES-256</span>
+            <h3>Powered by qpdf encryption.</h3>
+            <p>MarkPDFLock applies modern PDF encryption settings, then writes a separate encrypted file for each source PDF.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section setup" id="workflow" aria-labelledby="workflow-title">
+        <div class="section-heading">
+          <p class="eyebrow">Workflow</p>
+          <h2 id="workflow-title">Three steps, no account required.</h2>
+        </div>
+        <div class="setup-grid">
+          <div>
+            <span>1</span>
+            <h3>Add PDFs.</h3>
+            <p>Drag files into the app, choose individual PDFs, or add a folder.</p>
+          </div>
+          <div>
+            <span>2</span>
+            <h3>Choose protection.</h3>
+            <p>Enter the open password and decide whether printing, copying, or editing should be allowed.</p>
+          </div>
+          <div>
+            <span>3</span>
+            <h3>Export encrypted copies.</h3>
+            <p>Pick a folder and let MarkPDFLock save protected PDF copies there.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section privacy" id="privacy" aria-labelledby="privacy-title">
+        <div class="section-heading">
+          <p class="eyebrow">Privacy</p>
+          <h2 id="privacy-title">No upload. No login. No tracking.</h2>
+        </div>
+        <div class="privacy-grid">
+          <p>PDFs are processed locally on your Mac.</p>
+          <p>Passwords are used only for encryption.</p>
+          <p>Original files stay unchanged.</p>
+        </div>
+      </section>
+
+      <section class="download-panel" aria-labelledby="download-title">
+        <div>
+          <p class="eyebrow">Download</p>
+          <h2 id="download-title">Get MarkPDFLock from GitHub.</h2>
+          <p>Download the macOS app from GitHub Releases. If macOS warns on first launch, right-click the app and choose Open.</p>
+          <p class="release-meta compact">
+            <span>v1.0.0</span>
+            <span aria-hidden="true">|</span>
+            <span>macOS 13 or newer</span>
+          </p>
+        </div>
+        <div class="download-actions">
+          <a class="button primary" href="https://github.com/marksui/MarkPDFLock/releases">Download for macOS</a>
+          <a class="button secondary dark" href="https://github.com/marksui/MarkPDFLock">GitHub Repository</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>MarkPDFLock v1.0.0</span>
+      <span>Open source macOS PDF protection</span>
+    </footer>
+  </body>
+</html>

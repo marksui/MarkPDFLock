@@ -6,6 +6,9 @@ struct ContentView: View {
     @State private var isShowingSettings = false
 
     private let pageMaxWidth: CGFloat = 1200
+    private var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
+    }
 
     var body: some View {
         ZStack {
@@ -105,6 +108,9 @@ struct ContentView: View {
                 HStack(spacing: 6) {
                     Text(settings.text(.appTitle))
                         .font(.title2.weight(.bold))
+                    Text("v\(appVersion)")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
                     HelpHintView(message: settings.text(.helpAppOverview), scrollable: true)
                 }
                 Text(settings.text(.dragDropSubtitle))

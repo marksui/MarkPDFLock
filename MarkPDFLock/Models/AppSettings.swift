@@ -246,7 +246,7 @@ enum AppText {
         .modifyNoneDescription: "No editing allowed after encryption.",
         .modifyAssemblyDescription: "Only document assembly is allowed (for example rotating or merging pages).",
         .modifyFullDescription: "All modification actions are allowed.",
-        .helpAppOverview: "About this app:\nMarkPDFLock is a lightweight desktop tool for batch PDF protection.\n\nHow encryption works:\nIt uses qpdf to apply 256-bit AES encryption and PDF permission rules (print/copy/modify), then writes a new encrypted PDF file without altering your source file.\n\nCreator background:\nThis project was created as a practical workflow tool for fast, repeatable document protection.\n\nAbout the author:\nAn independent builder focused on making clean, practical desktop tools."
+        .helpAppOverview: "About this app:\nMarkPDFLock helps you password protect one PDF or a whole batch of PDFs.\n\nHow it works:\nIt applies PDF encryption and permission rules, then saves new encrypted copies without changing your original files.\n\nPrivacy:\nYour PDFs and passwords stay on your Mac."
     ]
 
     private static let simplifiedChinese: [AppTextKey: String] = [
@@ -327,7 +327,7 @@ enum AppText {
         .modifyNoneDescription: "加密后不允许任何编辑操作。",
         .modifyAssemblyDescription: "仅允许文档装配（例如旋转或合并页面）。",
         .modifyFullDescription: "允许所有修改操作。",
-        .helpAppOverview: "软件介绍：\nMarkPDFLock 是一个轻量级桌面工具，用于批量给 PDF 加密。\n\n如何实现加密：\n它调用 qpdf，对 PDF 应用 256-bit AES 加密和权限规则（打印/复制/修改），输出新的加密文件，不会改动原文件。\n\n创作背景：\n这个项目源于日常文档处理需求，希望用最少步骤完成稳定、可重复的加密流程。\n\n个人介绍：\n作者是专注实用工具的独立开发者，偏好简洁、稳定、可维护的产品设计。"
+        .helpAppOverview: "软件介绍：\nMarkPDFLock 可以帮你给一个或多个 PDF 设置密码保护。\n\n工作方式：\n它会应用 PDF 加密和权限规则，然后保存新的加密副本，不会修改原文件。\n\n隐私：\n你的 PDF 和密码都会留在本机。"
     ]
 }
 

@@ -1,137 +1,85 @@
 # MarkPDFLock
 
-MarkPDFLock is a **local-only macOS SwiftUI utility** for encrypting one or more PDF files with password protection using **qpdf + AES-256**.
+Version: `v1.0.0`
 
-- No cloud upload
-- No account/login
-- No analytics
-- No network calls
+MarkPDFLock is a small macOS app for protecting PDF files with passwords. Add one PDF or a whole batch, choose the permissions you want, and export encrypted copies without changing your original files.
 
-## Features
+Everything runs on your Mac. MarkPDFLock does not upload your PDFs, does not require an account, and does not include analytics.
 
-- Drag and drop one or multiple PDFs.
-- File queue with:
-  - file name
-  - original path
-  - file size
-  - status (`pending`, `processing`, `done`, `failed`)
-- Password settings:
-  - required open password
-  - optional owner password
-  - show/hide password
-- Permission settings:
-  - Printing: yes / no / low-resolution only
-  - Copying: yes / no
-  - Modifying: none / assembly / full
-- Select export folder.
-- Batch encryption with progress bar.
-- Per-file success/failure handling.
-- Reveal exported file in Finder.
-- Clear queue.
-- Overwrite toggle for existing output files.
-- Auto-open export folder when finished.
+## What It Does
 
-## Project structure
+- Encrypts PDF files with password protection
+- Supports batch processing for multiple PDFs
+- Lets you choose an open password and optional owner password
+- Controls whether recipients can print, copy, or modify the PDF
+- Saves encrypted copies to the folder you choose
+- Can overwrite existing encrypted files when you enable it
+- Can open the export folder after the job finishes
+- Shows per-file progress, success, and failure messages
+- Keeps the original PDFs untouched
 
-```text
-MarkPDFLock/
-├── MarkPDFLock.xcodeproj
-├── MarkPDFLock
-│   ├── MarkPDFLockApp.swift
-│   ├── Models
-│   │   ├── EncryptionOptions.swift
-│   │   └── FileItem.swift
-│   ├── Services
-│   │   └── QPDFRunner.swift
-│   ├── ViewModels
-│   │   └── MainViewModel.swift
-│   ├── Views
-│   │   ├── ContentView.swift
-│   │   ├── DropZoneView.swift
-│   │   ├── ExportControlsView.swift
-│   │   ├── FileListView.swift
-│   │   ├── PasswordSectionView.swift
-│   │   ├── PermissionSectionView.swift
-│   │   └── ProgressSectionView.swift
-│   └── Utilities
-└── README.md
-```
+## Getting Started
 
-## Build & run
+1. Open MarkPDFLock.
+2. Drag PDF files into the drop area, or click Add Files.
+3. Enter the open password recipients will use to open the encrypted PDF.
+4. Optional: enter an owner password if you want a separate password for permission control.
+5. Choose printing, copying, and modifying permissions.
+6. Choose an export folder.
+7. Click Start Encryption.
 
-1. Open `MarkPDFLock.xcodeproj` in Xcode (macOS).
-2. Set your own bundle identifier/team in target signing settings.
-3. Build and run the `MarkPDFLock` target.
+Encrypted files are saved as new PDFs. By default, output names use `_encrypted`, such as `Contract_encrypted.pdf`.
 
-## qpdf integration
+## Passwords and Permissions
 
-### Option A: Bundle qpdf inside app (recommended)
+The open password is required. Anyone who opens the encrypted PDF will need this password.
 
-1. Build or obtain a trusted `qpdf` executable for macOS.
-2. In Xcode, add a folder reference named `qpdf` under app resources.
-3. Place binary at:
+The owner password is optional. It controls permission settings such as printing, copying, and modifying. If you leave it blank, MarkPDFLock safely uses the open password for owner permissions too.
 
-```text
-MarkPDFLock/qpdf/qpdf
-```
+PDF permissions depend on the PDF reader. Most modern readers follow them, but they are not a replacement for sharing files carefully.
 
-4. Ensure the binary has execute permissions:
+## Privacy and Security
+
+- Your PDFs stay on your Mac.
+- Passwords are used locally during encryption.
+- MarkPDFLock does not send files or passwords over the network.
+- The app creates encrypted copies and does not edit your source PDFs.
+- You are responsible for storing passwords safely. If you forget a PDF password, MarkPDFLock cannot recover it.
+
+## Requirements
+
+- macOS 13 or newer
+- PDF files
+- A MarkPDFLock build that includes `qpdf`, or a local `qpdf` installation
+
+If MarkPDFLock says `qpdf` is missing, install it with Homebrew:
 
 ```bash
-chmod +x MarkPDFLock/qpdf/qpdf
+brew install qpdf
 ```
 
-The app resolves qpdf in this order:
-1. Bundled resource: `qpdf/qpdf`
-2. Bundled root resource: `qpdf`
-3. System locations:
-   - `/opt/homebrew/bin/qpdf`
-   - `/usr/local/bin/qpdf`
-   - `/usr/bin/qpdf`
+Then reopen MarkPDFLock and try again.
 
-### Option B: Use system-installed qpdf
+## Download
 
-Install qpdf locally and ensure one of the system paths above exists.
+Download MarkPDFLock from the [GitHub Releases page](https://github.com/marksui/MarkPDFLock/releases).
 
-## Example qpdf command
+If macOS shows a warning when opening the app, right-click MarkPDFLock and choose Open.
 
-The app builds a command equivalent to:
+## Troubleshooting
 
-```bash
-qpdf --encrypt "<user_password>" "<owner_password_or_user_password>" 256 \
-  --use-aes=y \
-  --print=<full|none|low> \
-  --modify=<none|assembly|all> \
-  --extract=<y|n> \
-  -- "<input.pdf>" "<output_encrypted.pdf>"
-```
+**The app says only PDF files are supported.**
+Make sure every file you added ends in `.pdf`.
 
-Output naming:
-- default: `originalname_encrypted.pdf`
-- if duplicate and overwrite is off: `originalname_encrypted_1.pdf`, etc.
+**The output file already exists.**
+Turn on Overwrite existing encrypted files, choose another export folder, or rename the existing file.
 
-## Security notes
+**Encryption failed for one file.**
+Check that the PDF is not damaged, locked by another app, or stored somewhere MarkPDFLock cannot read.
 
-- Encryption mode is locked to **256-bit AES** (`--use-aes=y` + `256`).
-- Weak encryption modes are not used.
-- If owner password is blank, MarkPDFLock safely falls back to the open password (avoids empty-owner defaults).
-- All processing is performed locally on device.
-- No password values are sent over network.
+**The encrypted PDF does not allow the action I expected.**
+Review the printing, copying, and modifying settings, then export a new encrypted copy.
 
-## Error handling included
+## Source
 
-- Missing qpdf binary
-- Invalid/non-PDF input
-- Empty required password
-- Export path issues
-- Duplicate output conflicts
-- Permission denied read/write failures
-
-All surfaced as plain English messages in the UI per file and in batch summary.
-
-## Optional app icon concept
-
-A simple line icon:
-- PDF document shape + padlock overlay
-- monochrome for template compatibility
-- accent blue lock for app icon variant
+MarkPDFLock is open source: [github.com/marksui/MarkPDFLock](https://github.com/marksui/MarkPDFLock).
