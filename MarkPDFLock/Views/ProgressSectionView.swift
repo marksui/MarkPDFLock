@@ -9,21 +9,21 @@ struct ProgressSectionView: View {
     let summaryText: String
 
     var body: some View {
-        GroupBox(settings.text(.progress)) {
+        GroupBox(label: Text(settings.text(.progress))) {
             VStack(alignment: .leading, spacing: 10) {
                 ProgressView(value: progress)
                     .progressViewStyle(.linear)
 
                 Text(settings.text(.processedCount, completedCount, totalCount))
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundColor(.secondary)
 
                 Text(summaryText)
                     .font(.subheadline)
 
                 if let globalMessage {
                     Text(globalMessage)
-                        .foregroundStyle(globalMessage == settings.text(.encryptionCompletedWithFailures) ? .orange : .green)
+                        .foregroundColor(globalMessage == settings.text(.encryptionCompletedWithFailures) ? .orange : .green)
                 }
             }
             .padding(.top, 4)

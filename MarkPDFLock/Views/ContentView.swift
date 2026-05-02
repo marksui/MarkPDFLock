@@ -6,6 +6,9 @@ struct ContentView: View {
     @State private var isShowingSettings = false
 
     private let pageMaxWidth: CGFloat = 1200
+    private var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
+    }
 
     var body: some View {
         ZStack {
@@ -61,17 +64,6 @@ struct ContentView: View {
                     }
 
                     card {
-                        FileListView(
-                            settings: settings,
-                            files: viewModel.files,
-                            isProcessing: viewModel.isProcessing,
-                            onRemove: viewModel.removeFile(id:),
-                            onRemoveCompleted: viewModel.removeCompletedFiles,
-                            onReveal: viewModel.revealInFinder
-                        )
-                    }
-
-                    card {
                         ProgressSectionView(
                             settings: settings,
                             progress: viewModel.progress,
@@ -81,15 +73,24 @@ struct ContentView: View {
                             summaryText: viewModel.summaryText
                         )
                     }
+
+                    card {
+                        FileListView(
+                            settings: settings,
+                            files: viewModel.files,
+                            isProcessing: viewModel.isProcessing,
+                            onRemove: viewModel.removeFile(id:),
+                            onRemoveCompleted: viewModel.removeCompletedFiles,
+                            onReveal: viewModel.revealInFinder
+                        )
+                    }
                 }
                 .frame(maxWidth: pageMaxWidth)
                 .padding(12)
             }
         }
-        .textSelection(.enabled)
-        .dynamicTypeSize(settings.fontSize.dynamicTypeSize)
         .controlSize(settings.fontSize.controlSize)
-        .tint(settings.theme.tint)
+        .accentColor(settings.theme.tint)
         .preferredColorScheme(settings.theme.colorScheme)
         .frame(minWidth: 960, minHeight: 760)
         .animation(.easeInOut(duration: 0.15), value: settings.theme)
@@ -105,10 +106,13 @@ struct ContentView: View {
                 HStack(spacing: 6) {
                     Text(settings.text(.appTitle))
                         .font(.title2.weight(.bold))
+                    Text("v\(appVersion)")
+                        .font(.caption.weight(.semibold))
+                        .foregroundColor(.secondary)
                     HelpHintView(message: settings.text(.helpAppOverview), scrollable: true)
                 }
                 Text(settings.text(.dragDropSubtitle))
-                    .foregroundStyle(.secondary)
+                    .foregroundColor(.secondary)
             }
             Spacer()
             HStack(spacing: 10) {
@@ -119,7 +123,7 @@ struct ContentView: View {
                         .font(.headline)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 4)
-                        .foregroundStyle(.white)
+                        .foregroundColor(.white)
                         .frame(minWidth: 170)
                 }
                 .disabled(!viewModel.canStartEncryption)

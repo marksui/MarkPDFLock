@@ -16,7 +16,7 @@ struct DropZoneView: View {
                 .font(.headline)
             Text(settings.text(.dragDropSubtitle))
                 .font(.subheadline)
-                .foregroundStyle(.secondary)
+                .foregroundColor(.secondary)
 
             HStack(spacing: 8) {
                 Button(settings.text(.addFiles), action: onAddFiles)

@@ -7,7 +7,7 @@ struct PasswordSectionView: View {
     @Binding var showPassword: Bool
 
     var body: some View {
-        GroupBox(settings.text(.passwordSettings)) {
+        GroupBox(label: Text(settings.text(.passwordSettings))) {
             VStack(alignment: .leading, spacing: 10) {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 6) {
@@ -35,7 +35,7 @@ struct PasswordSectionView: View {
                     }
                     Text(settings.text(.ownerPasswordHint))
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundColor(.secondary)
                 }
 
                 HStack(spacing: 6) {

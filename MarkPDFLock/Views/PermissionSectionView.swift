@@ -7,7 +7,7 @@ struct PermissionSectionView: View {
     @Binding var modifyPermission: ModifyPermission
 
     var body: some View {
-        GroupBox(settings.text(.permissionSettings)) {
+        GroupBox(label: Text(settings.text(.permissionSettings))) {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     HStack(spacing: 6) {
@@ -64,7 +64,7 @@ struct PermissionSectionView: View {
 
                     Text(modifyPermissionDescription(modifyPermission))
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundColor(.secondary)
                 }
             }
             .padding(.top, 4)
@@ -79,7 +79,7 @@ struct PermissionSectionView: View {
             Spacer(minLength: 0)
             Image(systemName: "chevron.up.chevron.down")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundColor(.secondary)
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)

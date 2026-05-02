@@ -9,13 +9,13 @@ struct ExportControlsView: View {
     let onClearList: () -> Void
 
     var body: some View {
-        GroupBox(settings.text(.export)) {
+        GroupBox(label: Text(settings.text(.export))) {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     Text(exportFolderURL?.path ?? settings.text(.noFolderSelected))
                         .lineLimit(1)
                         .truncationMode(.middle)
-                        .foregroundStyle(exportFolderURL == nil ? .secondary : .primary)
+                        .foregroundColor(exportFolderURL == nil ? .secondary : .primary)
                     Spacer()
                     Button(settings.text(.chooseFolder), action: onChooseFolder)
                     HelpHintView(message: settings.text(.helpChooseFolder))
@@ -33,7 +33,8 @@ struct ExportControlsView: View {
 
                 HStack {
                     Spacer()
-                    Button(settings.text(.clearList), role: .destructive, action: onClearList)
+                    Button(settings.text(.clearList), action: onClearList)
+                        .foregroundColor(.red)
                 }
             }
             .padding(.top, 4)
