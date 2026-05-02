@@ -2,9 +2,26 @@
 
 Version: `v1.0.0`
 
+[![DMG downloads](https://img.shields.io/github/downloads/marksui/MarkPDFLock/v1.0.0/MarkPDFLock-v1.0.0.dmg?label=DMG%20downloads)](https://github.com/marksui/MarkPDFLock/releases/download/v1.0.0/MarkPDFLock-v1.0.0.dmg)
+
 MarkPDFLock is a small macOS app for protecting PDF files with passwords. Add one PDF or a whole batch, choose the permissions you want, and export encrypted copies without changing your original files.
 
 Everything runs on your Mac. MarkPDFLock does not upload your PDFs, does not require an account, and does not include analytics.
+
+## Download
+
+Download the current release:
+
+[Download MarkPDFLock-v1.0.0.dmg](https://github.com/marksui/MarkPDFLock/releases/download/v1.0.0/MarkPDFLock-v1.0.0.dmg)
+
+## Install
+
+1. Download the DMG.
+2. Open `MarkPDFLock-v1.0.0.dmg`.
+3. Drag `MarkPDFLock.app` into the Applications folder.
+4. Open MarkPDFLock from Applications.
+
+If macOS shows a warning when opening the app, right-click MarkPDFLock and choose Open.
 
 ## What It Does
 
@@ -48,7 +65,7 @@ PDF permissions depend on the PDF reader. Most modern readers follow them, but t
 
 ## Requirements
 
-- macOS 13 or newer
+- macOS 11.5 or newer
 - PDF files
 - A MarkPDFLock build that includes `qpdf`, or a local `qpdf` installation
 
@@ -59,12 +76,6 @@ brew install qpdf
 ```
 
 Then reopen MarkPDFLock and try again.
-
-## Download
-
-Download MarkPDFLock from the [GitHub Releases page](https://github.com/marksui/MarkPDFLock/releases).
-
-If macOS shows a warning when opening the app, right-click MarkPDFLock and choose Open.
 
 ## Troubleshooting
 
