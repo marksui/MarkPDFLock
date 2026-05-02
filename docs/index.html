@@ -21,7 +21,7 @@
         <a href="#workflow">Workflow</a>
         <a href="#privacy">Privacy</a>
         <a href="https://github.com/marksui/MarkPDFLock">GitHub</a>
-        <a class="nav-download" href="https://github.com/marksui/MarkPDFLock/releases">Download</a>
+        <a class="nav-download" href="https://github.com/marksui/MarkPDFLock/releases/download/v1.0.0/MarkPDFLock-v1.0.0.dmg" data-download-link>Download</a>
       </nav>
     </header>
 
@@ -35,13 +35,15 @@
             Password protect one PDF or a whole batch, set printing and copying permissions, and keep every document local on your Mac.
           </p>
           <div class="hero-actions" aria-label="MarkPDFLock actions">
-            <a class="button primary" href="https://github.com/marksui/MarkPDFLock/releases">Download for macOS</a>
+            <a class="button primary" href="https://github.com/marksui/MarkPDFLock/releases/download/v1.0.0/MarkPDFLock-v1.0.0.dmg" data-download-link>Download for macOS</a>
             <a class="button secondary" href="https://github.com/marksui/MarkPDFLock">View on GitHub</a>
           </div>
           <p class="release-meta">
-            <span>MarkPDFLock v1.0.0</span>
+            <span>MarkPDFLock <span data-release-version>v1.0.0</span></span>
             <span aria-hidden="true">|</span>
-            <span>Local PDF encryption tool</span>
+            <span>macOS 11.5 or newer</span>
+            <span aria-hidden="true">|</span>
+            <span class="download-count" data-download-count>GitHub downloads: loading</span>
           </p>
         </div>
       </section>
@@ -193,15 +195,17 @@
         <div>
           <p class="eyebrow">Download</p>
           <h2 id="download-title">Get MarkPDFLock from GitHub.</h2>
-          <p>Download the macOS app from GitHub Releases. If macOS warns on first launch, right-click the app and choose Open.</p>
+          <p>Download the release DMG from GitHub. If macOS warns on first launch, right-click the app and choose Open.</p>
           <p class="release-meta compact">
-            <span>v1.0.0</span>
+            <span data-release-version>v1.0.0</span>
             <span aria-hidden="true">|</span>
-            <span>macOS 13 or newer</span>
+            <span>macOS 11.5 or newer</span>
+            <span aria-hidden="true">|</span>
+            <span class="download-count" data-download-count>GitHub downloads: loading</span>
           </p>
         </div>
         <div class="download-actions">
-          <a class="button primary" href="https://github.com/marksui/MarkPDFLock/releases">Download for macOS</a>
+          <a class="button primary" href="https://github.com/marksui/MarkPDFLock/releases/download/v1.0.0/MarkPDFLock-v1.0.0.dmg" data-download-link>Download DMG</a>
           <a class="button secondary dark" href="https://github.com/marksui/MarkPDFLock">GitHub Repository</a>
         </div>
       </section>
@@ -211,5 +215,54 @@
       <span>MarkPDFLock v1.0.0</span>
       <span>Open source macOS PDF protection</span>
     </footer>
+    <script>
+      const releaseApiUrl = "https://api.github.com/repos/marksui/MarkPDFLock/releases/latest";
+      const fallbackDownloadUrl = "https://github.com/marksui/MarkPDFLock/releases/download/v1.0.0/MarkPDFLock-v1.0.0.dmg";
+
+      function setDownloadLinks(url) {
+        document.querySelectorAll("[data-download-link]").forEach((link) => {
+          link.href = url;
+        });
+      }
+
+      function setDownloadCount(text) {
+        document.querySelectorAll("[data-download-count]").forEach((node) => {
+          node.textContent = text;
+        });
+      }
+
+      function setReleaseVersion(tagName) {
+        document.querySelectorAll("[data-release-version]").forEach((node) => {
+          node.textContent = tagName;
+        });
+      }
+
+      setDownloadLinks(fallbackDownloadUrl);
+
+      fetch(releaseApiUrl, {
+        headers: {
+          Accept: "application/vnd.github+json"
+        }
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("GitHub release request failed");
+          }
+          return response.json();
+        })
+        .then((release) => {
+          const dmgAsset = release.assets.find((asset) => asset.name.endsWith(".dmg"));
+          if (!dmgAsset) {
+            throw new Error("No DMG release asset found");
+          }
+
+          setReleaseVersion(release.tag_name);
+          setDownloadLinks(dmgAsset.browser_download_url);
+          setDownloadCount(`GitHub downloads: ${new Intl.NumberFormat().format(dmgAsset.download_count)}`);
+        })
+        .catch(() => {
+          setDownloadCount("GitHub downloads unavailable");
+        });
+    </script>
   </body>
 </html>
